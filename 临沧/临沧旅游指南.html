@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>秘境临沧 - 茶马古道上的绿色明珠</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #2c7744;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 导航栏 */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c7744;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #1e5c33;
+        }
+        
+        /* 临沧介绍窗口 */
+        .intro-section {
+            background: linear-gradient(135deg, #2c7744, #4caf50);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .intro-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .intro-title {
+            font-size: 42px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .intro-subtitle {
+            font-size: 24px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .intro-content {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .intro-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 30px;
+        }
+        
+        .intro-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .intro-card h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .intro-card p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .play-icon {
+            font-size: 24px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1593069567131-53a0614dde1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #2c7744;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #1e5c33;
+        }
+        
+        /* 内容区域 */
+        .section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2c7744;
+            font-size: 32px;
+        }
+        
+        /* 景点介绍 */
+        .attractions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .attraction-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .attraction-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .attraction-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .attraction-content {
+            padding: 20px;
+        }
+        
+        .attraction-content h3 {
+            margin-bottom: 10px;
+            color: #2c7744;
+        }
+        
+        /* 文化特色 */
+        .culture {
+            background-color: #f0f7f2;
+        }
+        
+        .culture-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .culture-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .culture-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .culture-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* 旅游贴士 */
+        .tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .tip-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .tip-card h3 {
+            color: #2c7744;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tip-card h3 i {
+            margin-right: 10px;
+        }
+        
+        /* 美食区域 */
+        .foods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .food-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .food-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .food-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .food-content {
+            padding: 20px;
+        }
+        
+        .food-content h3 {
+            margin-bottom: 10px;
+            color: #2c7744;
+        }
+        
+        /* 人文区域 */
+        .humanity {
+            background-color: #f0f7f2;
+        }
+        
+        .humanity-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .humanity-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+        
+        .humanity-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .humanity-text {
+            padding: 20px;
+        }
+        
+        .humanity-text h3 {
+            margin-bottom: 10px;
+            color: #2c7744;
+        }
+        
+        /* 天气区域 */
+        .weather {
+            text-align: center;
+            background: linear-gradient(135deg, #2c7744, #4caf50);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .weather-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .weather-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        
+        .weather-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        .weather-item {
+            margin: 10px;
+            padding: 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            min-width: 120px;
+        }
+        
+        .weather-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        
+        .temperature {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .weather-desc {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        
+        /* 视频弹窗 */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .video-modal.active {
+            display: flex;
+        }
+        
+        .video-content {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .video-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #2c7744;
+            color: white;
+        }
+        
+        .video-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .close-btn:hover {
+            transform: scale(1.2);
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 宽高比 */
+            height: 0;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-description {
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: #2c7744;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: #c8e6c9;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                margin-top: 15px;
+            }
+            
+            .nav-links li {
+                margin: 0 10px;
+            }
+            
+            .intro-title {
+                font-size: 32px;
+            }
+            
+            .intro-subtitle {
+                font-size: 20px;
+            }
+            
+            .intro-content {
+                font-size: 16px;
+            }
+            
+            .intro-card {
+                padding: 25px;
+            }
+            
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+            }
+            
+            .weather-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .video-content {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 视频弹窗 -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-content">
+            <div class="video-header">
+                <div class="video-title" id="videoTitle">视频标题</div>
+                <button class="close-btn" id="closeVideo">&times;</button>
+            </div>
+            <div class="video-container">
+                <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+            </div>
+            <div class="video-description" id="videoDescription">
+                视频描述内容将在这里显示。
+            </div>
+        </div>
+    </div>
+
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">秘境临沧</div>
+                <ul class="nav-links">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="临沧概况.html">临沧介绍</a></li>
+                    <li><a href="#attractions">景点推荐</a></li>
+                    <li><a href="#food">特色美食</a></li>
+                    <li><a href="#humanity">人文风情</a></li>
+                    <li><a href="#weather">实时天气</a></li>
+                    <li><a href="#tips">旅游贴士</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 临沧介绍窗口 -->
+    <section class="intro-section" id="intro">
+        <div class="intro-container">
+            <h1 class="intro-title">秘境临沧 · 茶源圣地</h1>
+            <p class="intro-subtitle">北回归线上的绿色明珠，世界茶树的起源地</p>
+            <div class="intro-content">
+                <p>临沧，位于云南省西南部，因濒临澜沧江而得名。这里是世界茶树和普洱茶的原产地，拥有3200年的茶树王和万亩古茶园。</p>
+                <p>临沧居住着佤族、傣族、拉祜族等23个少数民族，民族文化丰富多彩，是体验多元民族风情的绝佳之地。</p>
+            </div>
+            <div class="intro-card" id="introVideoCard" data-video="视频\临沧.mp4" data-title="临沧城市介绍" data-description="临沧位于云南省西南部，是著名的'滇红'茶之乡和世界茶树起源地。这里拥有丰富的自然景观和多彩的民族文化，是体验云南秘境风情的理想目的地。">
+                <h3>
+                    <i class="fas fa-play-circle play-icon"></i>
+                    观看临沧介绍视频
+                </h3>
+                <p>点击观看精彩的临沧城市宣传片，了解这座茶马古道上的绿色明珠</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>探索临沧 茶源圣地</h1>
+            <p>走进云南最后的秘境，感受茶马古道的千年回响</p>
+            <a href="#attractions" class="btn">立即探索</a>
+        </div>
+    </section>
+
+    <!-- 实时天气 -->
+    <section class="container" id="weather">
+        <div class="weather">
+            <div class="weather-container">
+                <h2 class="weather-title">临沧实时天气</h2>
+                <div class="weather-icon">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="temperature">22°C</div>
+                <div class="weather-desc">晴朗</div>
+                <div class="weather-info">
+                    <div class="weather-item">
+                        <div>湿度</div>
+                        <div>65%</div>
+                    </div>
+                    <div class="weather-item">
+                        <div>风速</div>
+                        <div>3 km/h</div>
+                    </div>
+                    <div class="weather-item">
+                        <div>气压</div>
+                        <div>1013 hPa</div>
+                    </div>
+                    <div class="weather-item">
+                        <div>能见度</div>
+                        <div>16 km</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 景点推荐 -->
+    <section class="section" id="attractions">
+        <div class="container">
+            <h2 class="section-title">临沧必游景点</h2>
+            <div class="attractions">
+                <div class="attraction-card" data-video="视频\翁丁佤族原始村落.mp4" data-title="翁丁佤族原始村落" data-description="翁丁佤族原始村落是中国最后一个原始部落，这里完整保留了佤族传统建筑、生活方式和文化习俗。村落依山而建，茅草屋错落有致，村民热情好客，是体验佤族文化的绝佳去处。">
+                    <!--
+                    专属图片 -->
+                    <img src="https://ts1.tc.mm.bing.net/th/id/R-C.f001a98e262a4d6e64e60605f0d9c41c?rik=tzEmqgVd8thGJA&riu=http%3a%2f%2fn.sinaimg.cn%2fsinakd20210216ac%2f401%2fw750h451%2f20210216%2f5dbe-kkciesq8375735.jpg&ehk=Oq3LVZWoAqJ9hnhvQbXGyxgtICo9DA5on4s2AizUKuQ%3d&risl=&pid=ImgRaw&r=0" alt="翁丁佤族原始村落" class="attraction-img">
+                    <div class="attraction-content">
+                        <h3>翁丁佤族原始村落</h3>
+                        <p>中国最后一个原始部落，体验佤族文化的活化石，感受原始部落的神秘魅力。</p>
+                    </div>
+                </div>
+                <div class="attraction-card" data-video="视频\沧源崖画.mp4" data-title="沧源崖画" data-description="沧源崖画是距今3000多年的古代岩画，分布在沧源县境内的10多个地点，共有1500多个图像。这些岩画内容丰富，有人物、动物、房屋、树木、太阳、山坡、道路等，是研究中国西南古代民族历史的重要实物资料。">
+                    <!-- 沧源崖画专属图片 -->
+                    <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="沧源崖画" class="attraction-img">
+                    <div class="attraction-content">
+                        <h3>沧源崖画</h3>
+                        <p>距今3000多年的古代岩画，是研究中国西南古代民族历史的重要实物资料。</p>
+                    </div>
+                </div>
+                <div class="attraction-card" data-video="视频\勐库大雪山.mp4" data-title="勐库大雪山" data-description="勐库大雪山是世界茶树的起源地之一，这里拥有世界上面积最大、海拔最高、密度最大、抗逆性最强的千年野生古茶树群落。这些古茶树树龄大多在千年以上，最高的达25米，是研究茶树起源和演化的活化石。">
+                    <!-- 勐库大雪山专属图片 -->
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="勐库大雪山" class="attraction-img">
+                    <div class="attraction-content">
+                        <h3>勐库大雪山</h3>
+                        <p>世界茶树的起源地之一，拥有千年野生古茶树群落，是普洱茶爱好者的朝圣地。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 特色美食 -->
+    <section class="section" id="food">
+        <div class="container">
+            <h2 class="section-title">临沧特色美食</h2>
+            <div class="foods">
+                <div class="food-card" data-video="视频\佤族鸡肉烂饭.mp4" data-title="佤族鸡肉烂饭" data-description="佤族鸡肉烂饭是佤族最具代表性的传统美食，选用当地土鸡与优质大米一同熬煮，配以佤族特有的香料。烹饪过程中需不断搅拌，直至米饭与鸡肉完全融合，口感软糯，香气扑鼻，是佤族待客的最高礼节。">
+                    <!-- 佤族鸡肉烂饭专属图片 -->
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="佤族鸡肉烂饭" class="food-img">
+                    <div class="food-content">
+                        <h3>佤族鸡肉烂饭</h3>
+                        <p>佤族传统美食，将鸡肉与米饭一同熬煮，口感软糯，香气扑鼻，是佤族待客的最高礼节。</p>
+                    </div>
+                </div>
+                <div class="food-card" data-video="视频\傣味烤鱼.mp4" data-title="傣味烤鱼" data-description="傣味烤鱼选用当地新鲜河鱼，配以香茅草、柠檬叶、小米辣等傣族特色香料，用竹片夹住烤制而成。烤制过程中香料的味道渗入鱼肉，外酥里嫩，酸辣开胃，是傣族饮食文化的代表。">
+                    <!-- 傣味烤鱼专属图片 -->
+                    <img src="https://img.redocn.com/sheying/20220415/yunnandaizumeishixiangmaocaokaoyu_12329447.jpg" alt="傣味烤鱼" class="food-img">
+                    <div class="food-content">
+                        <h3>傣味烤鱼</h3>
+                        <p>选用当地新鲜河鱼，配以香茅草、柠檬叶等傣族特色香料烤制，酸辣开胃，风味独特。</p>
+                    </div>
+                </div>
+                <div class="food-card" data-video="视频\稀豆粉.mp4" data-title="稀豆粉" data-description="稀豆粉是临沧特色早餐，用当地优质豌豆磨浆熬制而成。食用时配以辣椒油、花生碎、芝麻、香菜等佐料，口感细腻爽滑，营养丰富，是当地人最喜爱的早餐之一。">
+                    <!-- 稀豆粉专属图片 -->
+                    <img src="https://ts1.tc.mm.bing.net/th/id/R-C.a1fd282c2cd3cf05b11ead7a27240e20?rik=dAczmonYud9GAA&riu=http%3a%2f%2fimg1.cloud.itouchtv.cn%2f80915465b3d254ac4fdc9d5976539330.jpeg&ehk=QGjbXZTAFzmALrwVCG5ZAc%2bS8YwBcEpjjqS9WyOCJn0%3d&risl=&pid=ImgRaw&r=0" alt="稀豆粉" class="food-img">
+                    <div class="food-content">
+                        <h3>稀豆粉</h3>
+                        <p>临沧特色早餐，用豌豆磨浆熬制而成，配以辣椒油、花生碎等佐料，口感细腻爽滑。</p>
+                    </div>
+                </div>
+                <div class="food-card" data-video="视频\凤庆粑粑卷.mp4" data-title="凤庆粑粑卷" data-description="凤庆粑粑卷是临沧传统小吃，用优质米粉制成薄饼，卷入豆芽、肉末、花生、辣椒等馅料，外酥内软，香气四溢。制作工艺讲究，是当地节庆和日常生活中的常见美食。">
+                    <!-- 凤庆粑粑卷专属图片 -->
+                    <img src="https://so1.360tres.com/t01fd8bf2cae45cfac2.jpg" alt="凤庆粑粑卷" class="food-img">
+                    <div class="food-content">
+                        <h3>凤庆粑粑卷</h3>
+                        <p>临沧传统小吃，用米粉制成薄饼，卷入豆芽、肉末等馅料，外酥内软，香气四溢。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 人文风情 -->
+    <section class="section humanity" id="humanity">
+        <div class="container">
+            <h2 class="section-title">临沧人文风情</h2>
+            <div class="humanity-content">
+                <div class="humanity-card" data-video="视频\佤族木鼓舞.mp4" data-title="佤族木鼓舞" data-description="佤族木鼓舞是佤族最具代表性的传统舞蹈，以木鼓为伴奏，动作粗犷豪放，节奏鲜明。木鼓在佤族文化中具有神圣地位，被视为通神的法器。木鼓舞展现了佤族人民对自然的敬畏和对生活的热爱，是佤族文化的重要载体。">
+                    <!-- 佤族木鼓舞专属图片 -->
+                    <img src="https://ts1.tc.mm.bing.net/th/id/R-C.881ea75d7ec2c02e8f3fa8648dbb948e?rik=e%2bEn1m96K4UWGg&riu=http%3a%2f%2fwww.56whw.com%2fimage%2fnews%2f2020-02-18%2f1581993356166057870.jpg&ehk=kxDx8gd6JRhafhl4QE7UfqKe8REuDA9eQQEDU8%2f5RIY%3d&risl=&pid=ImgRaw&r=0" alt="佤族木鼓舞" class="humanity-img">
+                    <div class="humanity-text">
+                        <h3>佤族木鼓舞</h3>
+                        <p>佤族传统舞蹈，以木鼓为伴奏，动作粗犷豪放，展现了佤族人民对自然的敬畏和对生活的热爱。</p>
+                    </div>
+                </div>
+                <div class="humanity-card" data-video="视频\傣族泼水节.mp4" data-title="傣族泼水节" data-description="傣族泼水节是傣族最盛大的传统节日，每年四月中旬举行。节日期间，人们互相泼水祝福，祈求洗去不顺，带来好运。泼水节期间还有赛龙舟、放高升、跳孔雀舞等丰富多彩的活动，是体验傣族文化的最佳时机。">
+                    <!-- 傣族泼水节专属图片 -->
+                    <img src="https://img.shetu66.com/2024/04/09/171261698353802354.png?x-oss-process=image/resize,h_800/watermark,image_d2F0ZXJtYXJrL2JhY2tncm91cDAxLnBuZw==,g_se,x_0,y_10/watermark,text_6K6-5Zu-572RIOe8luWPtzo2NjUwODY1MjEyNTQyMjA4Mzc=,type_ZmFuZ3poZW5naGVpdGk,color_FFFFFF,size_12,g_se,x_15,y_16" alt="傣族泼水节" class="humanity-img">
+                    <div class="humanity-text">
+                        <h3>傣族泼水节</h3>
+                        <p>每年四月中旬举行的传统节日，人们互相泼水祝福，祈求洗去不顺，带来好运。</p>
+                    </div>
+                </div>
+                <div class="humanity-card" data-video="视频\茶马古道文化.mp4" data-title="茶马古道文化" data-description="临沧是茶马古道的重要节点，至今仍保留着古道的遗迹和悠久的茶叶贸易传统。茶马古道是古代中国西南地区以马帮为主要交通工具的民间国际贸易通道，是中外文化交流、民族迁徙和融合的重要走廊。临沧的普洱茶通过这条古道远销各地。">
+                    <!-- 茶马古道文化专属图片 - 修复后的链接 -->
+                    <img src="https://pic.nximg.cn/file/20221123/3379734_105049372125_2.jpg" alt="茶马古道文化" class="humanity-img">
+                    <div class="humanity-text">
+                        <h3>茶马古道文化</h3>
+                        <p>临沧是茶马古道的重要节点，至今仍保留着古道的遗迹和悠久的茶叶贸易传统。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 旅游贴士 -->
+    <section class="section" id="tips">
+        <div class="container">
+            <h2 class="section-title">旅游实用贴士</h2>
+            <div class="tips">
+                <div class="tip-card">
+                    <h3><i class="fas fa-calendar-alt"></i> 最佳旅游时间</h3>
+                    <p>临沧气候宜人，全年适合旅游。最佳旅游时间为10月至次年4月，此时气候凉爽，是避寒的好去处。</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-bus"></i> 交通指南</h3>
+                    <p>可乘飞机直达临沧机场，或从昆明乘坐高铁、大巴前往。市内交通以公交和出租车为主，景点间可包车前往。</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-utensils"></i> 特色美食</h3>
+                    <p>不可错过的美食有佤族鸡肉烂饭、傣味烤鱼、稀豆粉、凤庆粑粑卷等，还有各种野生菌类和时令山茅野菜。</p>
+                </div>
+                <div class="tip-card">
+                    <h3><i class="fas fa-shopping-bag"></i> 购物推荐</h3>
+                    <p>临沧普洱茶、滇红茶、佤族织锦、少数民族银饰、野生菌干货等都是不错的旅游纪念品和特产。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <script>
+        // 视频弹窗功能
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoModal = document.getElementById('videoModal');
+            const videoPlayer = document.getElementById('videoPlayer');
+            const videoTitle = document.getElementById('videoTitle');
+            const videoDescription = document.getElementById('videoDescription');
+            const closeVideo = document.getElementById('closeVideo');
+            
+            // 获取所有卡片元素（包括新的介绍卡片）
+            const cards = document.querySelectorAll('.attraction-card, .food-card, .humanity-card, .intro-card');
+            
+            // 为每个卡片添加点击事件
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const videoUrl = this.getAttribute('data-video');
+                    const title = this.getAttribute('data-title');
+                    const description = this.getAttribute('data-description');
+                    
+                    // 设置视频内容
+                    videoPlayer.src = videoUrl;
+                    videoTitle.textContent = title;
+                    videoDescription.textContent = description;
+                    
+                    // 显示弹窗
+                    videoModal.classList.add('active');
+                });
+            });
+            
+            // 关闭弹窗
+            closeVideo.addEventListener('click', function() {
+                videoModal.classList.remove('active');
+                videoPlayer.src = ''; // 停止播放视频
+            });
+            
+            // 点击弹窗外部关闭
+            videoModal.addEventListener('click', function(e) {
+                if (e.target === videoModal) {
+                    videoModal.classList.remove('active');
+                    videoPlayer.src = ''; // 停止播放视频
+                }
+            });
+            
+            // 按ESC键关闭弹窗
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+                    videoModal.classList.remove('active');
+                    videoPlayer.src = ''; // 停止播放视频
+                }
+            });
+        });
+        
+        // 模拟实时天气数据更新
+        function updateWeather() {
+            const weatherIcons = {
+                '晴朗': 'fa-sun',
+                '多云': 'fa-cloud',
+                '阴天': 'fa-cloud',
+                '小雨': 'fa-cloud-rain',
+                '中雨': 'fa-cloud-showers-heavy',
+                '大雨': 'fa-cloud-showers-heavy'
+            };
+            
+            // 模拟不同天气状况
+            const weatherConditions = ['晴朗', '多云', '阴天', '小雨'];
+            const randomCondition = weatherConditions[Math.floor(Math.random() * weatherConditions.length)];
+            
+            // 更新天气信息
+            document.querySelector('.weather-icon i').className = `fas ${weatherIcons[randomCondition]}`;
+            document.querySelector('.weather-desc').textContent = randomCondition;
+            
+            // 根据天气状况调整温度
+            let temperature = 22;
+            if (randomCondition === '小雨') temperature = 18;
+            if (randomCondition === '阴天') temperature = 20;
+            if (randomCondition === '多云') temperature = 21;
+            
+            document.querySelector('.temperature').textContent = `${temperature}°C`;
+            
+            // 更新其他天气数据
+            document.querySelectorAll('.weather-item div:nth-child(2)')[0].textContent = `${60 + Math.floor(Math.random() * 10)}%`;
+            document.querySelectorAll('.weather-item div:nth-child(2)')[1].textContent = `${2 + Math.floor(Math.random() * 5)} km/h`;
+        }
+        
+        // 每30秒更新一次天气（模拟实时更新）
+        setInterval(updateWeather, 30000);
+        
+        // 页面加载时初始化天气
+        document.addEventListener('DOMContentLoaded', updateWeather);
+    </script>
+</body>
+</html>

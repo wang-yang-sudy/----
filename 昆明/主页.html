@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>昆明风光 - 春城花都</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e6f7ed 0%, #f0fff8 100%);
+            color: #333;
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        /* 添加背景装饰元素 */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(46, 139, 87, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(60, 179, 113, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 50% 50%, rgba(32, 178, 170, 0.03) 0%, transparent 30%);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 导航栏样式 */
+        header {
+            background: linear-gradient(135deg, #2e8b57 0%, #3cb371 50%, #20b2aa 100%);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            font-size: 32px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* 主要内容区域 */
+        main {
+            margin-top: 80px;
+        }
+        
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #2e8b57;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(to right, #2e8b57, #3cb371);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* 英雄区域 - 增强背景 */
+        .hero {
+            height: 90vh;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.3)), 
+                url('https://github.com/wang-yang-sudy/----/blob/main/%E6%98%86%E6%98%8E/IMG_20251104_104247.png?raw=true');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 添加浮动元素 */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(to right, #fff, #e6f7ed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes titleGlow {
+            from {
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6);
+            }
+        }
+        
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff7e5f, #feb47b);
+            color: white;
+            padding: 14px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* 景点介绍 */
+        .attractions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .attraction-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s;
+            position: relative;
+        }
+        
+        .attraction-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(46, 139, 87, 0.1));
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        
+        .attraction-card:hover::before {
+            opacity: 1;
+        }
+        
+        .attraction-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .attraction-card:hover .card-img img {
+            transform: scale(1.1);
+        }
+        
+        .card-content {
+            padding: 25px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-content h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+            color: #2e8b57;
+        }
+        
+        /* 文化部分 - 增强背景 */
+        .culture {
+            background: 
+                linear-gradient(rgba(230, 247, 237, 0.9), rgba(240, 255, 248, 0.9)),
+                url('https://images.unsplash.com/photo-1578558542431-ee0e57e40bb8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            border-radius: 20px;
+            padding: 70px 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .culture-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .culture-text {
+            flex: 1;
+        }
+        
+        .culture-video {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            transition: transform 0.4s;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 宽高比 */
+            height: 0;
+        }
+        
+        .culture-video:hover {
+            transform: scale(1.03);
+        }
+        
+        .culture-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* 旅游指南 */
+        .guide-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .guide-card {
+            background: white;
+            padding: 35px 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .guide-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #2e8b57, #3cb371);
+        }
+        
+        .guide-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .guide-icon {
+            font-size: 48px;
+            color: #2e8b57;
+            margin-bottom: 20px;
+            transition: transform 0.4s;
+        }
+        
+        .guide-card:hover .guide-icon {
+            transform: scale(1.2);
+        }
+        
+        /* 页脚 */
+        footer {
+            background: linear-gradient(135deg, #2e8b57 0%, #3cb371 100%);
+            color: white;
+            padding: 60px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: white;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #e6f7ed;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .culture-content {
+                flex-direction: column;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .hero {
+                height: 70vh;
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-leaf"></i>
+                    昆明风光
+                </div>
+                <ul class="nav-links">
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="#attractions">景点介绍</a></li>
+                    <li><a href="#culture">昆明文化</a></li>
+                    <li><a href="#guide">旅游指南</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- 主要内容 -->
+    <main>
+        <!-- 首页部分 -->
+        <section id="home">
+            <div class="hero">
+                <div class="hero-content fade-in">
+                    <h1>春城花都 魅力昆明</h1>
+                    <p>四季如春，花开不败，昆明是一座被春天宠爱的城市。</p>
+                    <a href="#attractions" class="btn">探索昆明</a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 景点介绍部分 -->
+        <section id="attractions">
+            <div class="container">
+                <div class="section-title">
+                    <h2>昆明著名景点</h2>
+                </div>
+                <div class="attractions">
+                    <div class="attraction-card fade-in">
+                        <div class="card-img">
+                            <img src="IMG_20251104_110947.png" alt="石林">
+                        </div>
+                        <div class="card-content">
+                            <h3><a href="石林风景区.html">石林风景区</a></h3>
+                            <p>石林是世界自然遗产，被誉为"天下第一奇观"，形成于2.7亿年前，是典型的喀斯特地貌。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="attraction-card fade-in">
+                        <div class="card-img">
+                            <img src="IMG_20251104_104247.png" alt="滇池">
+                        </div>
+                        <div class="card-content">
+                            <h3><a href="滇池.html">滇池</a></h3>
+                            <p>滇池是云南最大的淡水湖，有"高原明珠"之称。冬季成千上万的红嘴鸥来此过冬，成为一道亮丽风景。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="attraction-card fade-in">
+                        <div class="card-img">
+                            <img src="IMG_20251104_110338.jpg" alt="西山">
+                        </div>
+                        <div class="card-content">
+                            <h3><a href="西山森林公园.html">西山森林公园</a></h3>
+                            <p>西山濒临滇池，远眺如睡佛卧云，故有"卧佛山"之称；又似少女躺卧滇池畔，故有"睡美人山"之美誉。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 昆明文化部分 -->
+        <section id="culture">
+            <div class="container">
+                <div class="section-title">
+                    <h2>昆明文化</h2>
+                </div>
+                <div class="culture">
+                    <div class="culture-content">
+                        <div class="culture-text">
+                            <h3>多元文化交融</h3>
+                            <p>昆明作为多民族聚居的省会城市，融合了汉族、彝族、白族、哈尼族等多个民族的文化特色。</p>
+                            <p>昆明有着悠久的历史，是国务院公布的首批24个国家历史文化名城之一，拥有2200多年的建城史。</p>
+                            <p>昆明的传统节庆活动丰富多彩，如火把节、三月三、花灯节等，体现了浓郁的地方特色和民族风情。</p>
+                            <a href="#" class="btn" style="margin-top: 20px;">了解更多</a>
+                        </div>
+                        <div class="culture-video">
+                            <!-- 这里插入视频 -->
+                            <iframe src="../vide/VID_20251104_213518.mp4" 
+                                    title="昆明文化介绍视频" 
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                    allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 旅游指南部分 -->
+        <section id="guide">
+            <div class="container">
+                <div class="section-title">
+                    <h2>旅游指南</h2>
+                </div>
+                <div class="guide-cards">
+                    <div class="guide-card fade-in">
+                        <div class="guide-icon">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <h3>美食推荐</h3>
+                        <p>品尝昆明特色美食：过桥米线、汽锅鸡、鲜花饼、野生菌火锅等。</p>
+                    </div>
+                    
+                    <div class="guide-card fade-in">
+                        <div class="guide-icon">
+                            <i class="fas fa-hotel"></i>
+                        </div>
+                        <h3>住宿推荐</h3>
+                        <p>从五星酒店到特色民宿，昆明有多种住宿选择满足不同需求。</p>
+                    </div>
+                    
+                    <div class="guide-card fade-in">
+                        <div class="guide-icon">
+                            <i class="fas fa-map-signs"></i>
+                        </div>
+                        <h3>行程规划</h3>
+                        <p>提供1-5日游行程建议，帮助您合理安排昆明之旅。</p>
+                    </div>
+                    
+                    <div class="guide-card fade-in">
+                        <div class="guide-icon">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <h3>购物指南</h3>
+                        <p>推荐购买普洱茶、云南白药、鲜花制品、民族工艺品等特色纪念品。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#attractions">景点介绍</a></li>
+                        <li><a href="#culture">昆明文化</a></li>
+                        <li><a href="#guide">旅游指南</a></li>
+                    </ul>
+                </div>
+    </footer>
+    
+    <script>
+        // 平滑滚动效果
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // 添加滚动动画效果
+        window.addEventListener('scroll', function() {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect();
+                if(position.top < window.innerHeight - 100) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        // 初始化页面时触发一次滚动事件以显示初始元素
+        window.dispatchEvent(new Event('scroll'));
+    </script>
+</body>
+</html>

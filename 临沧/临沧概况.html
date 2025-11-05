@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>航拍中国 · 秘境临沧 - 中国西南边疆的绿色明珠</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+        }
+        
+        body {
+            background-color: #0a1f1c;
+            color: #e8f4f1;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 航拍视频背景 */
+        .aerial-hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(10, 31, 28, 0.3), rgba(10, 31, 28, 0.8));
+            z-index: 0;
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero-title {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            background: linear-gradient(to right, #c8e6c9, #4caf50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #e8f4f1;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* 内容区域 */
+        .content-section {
+            padding: 80px 0;
+            position: relative;
+        }
+        
+        .content-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1545569341-9d5b5cd6d372?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .content-container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(76, 175, 80, 0.2);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: #4caf50;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, #2c7744, #4caf50);
+        }
+        
+        .intro-text {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+        
+        .highlight {
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        .summary-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 40px 0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .summary-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: #a5d6a7;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .importance-section {
+            margin-top: 40px;
+            padding: 30px;
+            background: rgba(44, 119, 68, 0.2);
+            border-radius: 10px;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .importance-title {
+            color: #4caf50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: #081915;
+            padding: 30px 0 15px;
+            border-top: 1px solid rgba(76, 175, 80, 0.2);
+            text-align: center;
+        }
+        
+        .copyright {
+            color: #a5d6a7;
+            font-size: 0.9rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .content-container {
+                padding: 30px 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .intro-text {
+                font-size: 1rem;
+            }
+        }
+        
+        /* 滚动动画 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 航拍视频背景 -->
+    <section class="aerial-hero">
+        <video class="video-background" autoplay muted loop>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-green-forest-43537-large.mp4" type="video/mp4">
+            您的浏览器不支持视频播放
+        </video>
+        <div class="video-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">航拍中国 · 秘境临沧</h1>
+            <p class="hero-subtitle">中国西南边疆的绿色明珠，多元文化的交汇之地</p>
+        </div>
+    </section>
+
+    <!-- 内容区域 -->
+    <section class="content-section">
+        <div class="container">
+            <div class="content-container fade-in">
+                <div class="section-title">
+                    <h2>临沧：西南边疆的生态与文化屏障</h2>
+                </div>
+                
+                <div class="intro-text">
+                    <p>从空中俯瞰，<span class="highlight">临沧</span>如同一颗镶嵌在中国西南边陲的绿色明珠，地处云南省西南部，因濒临澜沧江而得名。这片土地东邻普洱，北连大理，西接保山，西南与缅甸接壤，是中国通往南亚、东南亚的重要门户。</p>
+                    
+                    <p>作为<span class="highlight">世界茶树的起源地</span>，临沧拥有3200年的古茶树和万亩古茶园，是普洱茶文化的发祥地。这里居住着佤族、傣族、拉祜族等23个少数民族，形成了丰富多彩的民族文化景观。佤族的木鼓舞、傣族的泼水节、拉祜族的葫芦笙舞，无不展现着各民族对生活的热爱和对自然的敬畏。</p>
+                </div>
+                
+                <div class="summary-image">
+                    <img src="https://bpic.588ku.com/back_list_pic/23/05/17/75e92f4e681efeb526f7d8603199ca11.jpg!/fh/300/quality/90/unsharp/true/compress/true" alt="临沧全景">
+                </div>
+                <div class="image-caption">临沧壮美的自然风光与多元文化交融的生动写照</div>
+                
+                <div class="intro-text">
+                    <p>历史上，临沧是<span class="highlight">茶马古道</span>的重要节点，见证了中原文化与边疆少数民族文化的交流融合。至今仍保留着古道的遗迹和悠久的茶叶贸易传统，这条古道不仅是商品流通的通道，更是文化传播和民族融合的桥梁。</p>
+                </div>
+                
+                <div class="importance-section">
+                    <h3 class="importance-title">临沧对中国边疆的重要性</h3>
+                    <p>临沧地处中国西南边疆前沿，战略地位十分重要。作为生态安全屏障，这里森林覆盖率超过70%，是澜沧江流域重要的水源涵养地和生物多样性宝库。同时，临沧也是民族团结进步的典范，多元文化在这里和谐共生，共同构筑了稳固的边疆社会基础。</p>
+                    
+                    <p>在经济上，临沧是中国面向南亚东南亚辐射中心的重要节点，通过边境口岸与缅甸等国家开展经贸往来，促进区域合作与发展。在"一带一路"倡议背景下，临沧的区位优势更加凸显，正成为连接中国与周边国家的重要枢纽。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2023 航拍中国 · 秘境临沧 | 资料来源：公开资料整理</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 滚动动画
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const fadeInOnScroll = function() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('visible');
+                    }
+                });
+            };
+            
+            // 初始检查
+            fadeInOnScroll();
+            
+            // 滚动时检查
+            window.addEventListener('scroll', fadeInOnScroll);
+        });
+    </script>
+</body>
+</html>

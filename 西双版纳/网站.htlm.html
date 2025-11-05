@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>西双版纳 - 热带雨林风情之旅</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        :root {
+            --primary-green: #2e7d32;
+            --accent-green: #4caf50;
+            --gold: #ffb300;
+            --deep-green: #1b5e20;
+            --light-bg: #f8f8f8;
+            --dark-text: #333;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* 导航栏样式 */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+            color: var(--gold);
+        }
+        
+        .logo span {
+            color: var(--gold);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-green);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-green);
+        }
+        
+        /* 英雄区域样式 */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                        url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--gold);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background-color: #ffa000;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-green);
+        }
+        
+        /* 章节样式 */
+        section {
+            padding: 5rem 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold);
+            margin: 0.5rem auto;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        /* 景点卡片样式 */
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .attraction-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        
+        .attraction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--deep-green);
+        }
+        
+        .card-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* 文化展示样式 */
+        .culture-section {
+            background-color: var(--primary-green);
+            color: white;
+            position: relative;
+        }
+        
+        .culture-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .culture-text {
+            flex: 1;
+            min-width: 300px;
+            padding-right: 2rem;
+        }
+        
+        .culture-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .culture-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .culture-image {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .culture-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .culture-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* 美食部分样式 */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .food-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .food-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .food-img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .food-content {
+            padding: 1.5rem;
+        }
+        
+        .food-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--deep-green);
+        }
+        
+        .food-content p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* 节日部分样式 */
+        .festival-section {
+            background: linear-gradient(rgba(30, 120, 35, 0.9), rgba(30, 120, 35, 0.9)), 
+                        url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+        }
+        
+        .festival-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .festival-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .festival-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        /* 旅游路线样式 */
+        .itinerary-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: none;
+            border-radius: 30px;
+            margin: 0.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-btn.active {
+            background: var(--primary-green);
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .itinerary-day {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .itinerary-day:last-child {
+            margin-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .itinerary-day h4 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .itinerary-day h4 i {
+            margin-right: 0.5rem;
+            color: var(--gold);
+        }
+        
+        /* 住宿推荐样式 */
+        .accommodation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .accommodation-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .accommodation-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .accommodation-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .accommodation-content {
+            padding: 1.5rem;
+        }
+        
+        .accommodation-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--deep-green);
+        }
+        
+        .accommodation-content .location {
+            color: #888;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .accommodation-content .location i {
+            margin-right: 0.5rem;
+        }
+        
+        .accommodation-content .price {
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .accommodation-content .rating {
+            color: #ffb300;
+            margin-bottom: 1rem;
+        }
+        
+        /* 页脚样式 */
+        footer {
+            background-color: var(--deep-green);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--gold);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+                padding: 0.8rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .culture-container {
+                flex-direction: column;
+            }
+            
+            .culture-text {
+                padding-right: 0;
+                margin-bottom: 2rem;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 1rem;
+                display: block;
+            }
+        }
+        
+        /* 页面切换效果 */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-green);
+            z-index: 9999;
+            transform: translateY(100%);
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .page-transition.active {
+            transform: translateY(0);
+        }
+        
+        /* 回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--accent-green);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面切换动画层 -->
+    <div class="page-transition"></div>
+    
+    <!-- 回到顶部按钮 -->
+    <div class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+    
+    <!-- 导航栏 -->
+    <header>
+        <div class="nav-container">
+            <div class="logo"><i class="fas fa-leaf"></i>西双版纳<span>之旅</span></div>
+            <button class="mobile-menu-btn">☰</button>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#attractions">景点推荐</a></li>
+                <li><a href="#culture">民族文化</a></li>
+                <li><a href="#food">特色美食</a></li>
+                <li><a href="#festival">民族节日</a></li>
+                <li><a href="#itinerary">旅游路线</a></li>
+                <li><a href="#accommodation">住宿推荐</a></li>
+            </ul>
+        </div>
+    </header>
+    
+    <!-- 英雄区域 -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>探索西双版纳的热带风情</h1>
+            <p>走进这片神奇的热带雨林，体验傣族文化的独特魅力，感受大自然的奇妙造化。西双版纳，一个让心灵栖息的地方。</p>
+            <a href="#attractions" class="btn">开始探索</a>
+            <a href="#itinerary" class="btn btn-outline">查看路线</a>
+        </div>
+    </section>
+    
+    <!-- 景点推荐 -->
+    <section id="attractions">
+        <div class="container">
+            <div class="section-title">
+                <h2>热门景点</h2>
+            </div>
+            <div class="section-subtitle">
+                <p>西双版纳拥有众多自然与人文景观，从热带雨林到民族村落，每一处都充满了独特的魅力。</p>
+            </div>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.QCxWS63kFsJ6PbewzxzRQwHaEt?w=286&h=181&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt="野象谷" class="card-img">
+                    <div class="card-content">
+                        <h3>野象谷</h3>
+                        <p>这里是亚洲野象频繁光顾的地方，沿着高空观象栈道，您有机会看到野生亚洲象在森林中活动的场景。</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> 景洪市</span>
+                            <span><i class="fas fa-clock"></i> 建议3-4小时</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <img src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="热带植物园" class="card-img">
+                    <div class="card-content">
+                        <h3>中国科学院西双版纳热带植物园</h3>
+                        <p>集科学研究、物种保存和科普教育为一体的综合性研究机构，也是风景秀丽的游览胜地。</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> 勐腊县</span>
+                            <span><i class="fas fa-clock"></i> 建议4-5小时</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <img src="https://ts1.tc.mm.bing.net/th/id/R-C.8878dae31a95df5269f348c651e92092?rik=Qrb3eFrGGxFYeA&riu=http%3a%2f%2fpic5.40017.cn%2f04%2f001%2fc2%2fb2%2frBTJU10ZwcGAB9zBAALUcER7DX0732.jpg&ehk=fwMo0aR%2frUv1vIf6dhLEhJSWk41S6n2Uj0hWB3iqRkE%3d&risl=&pid=ImgRaw&r=0" alt="傣族园" class="card-img">
+                    <div class="card-content">
+                        <h3>傣族园</h3>
+                        <p>在这里可以体验原汁原味的傣族生活，观赏傣族建筑，品尝傣家美食，参与泼水节活动。</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> 景洪市</span>
+                            <span><i class="fas fa-clock"></i> 建议2-3小时</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.uPsoxKvP1Cj8WTw_ay10UgHaEK?w=290&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt="曼听公园" class="card-img">
+                    <div class="card-content">
+                        <h3>曼听公园</h3>
+                        <p>曾是傣王御花园，已有1300多年历史。园内有山丘、河道和民族特色浓郁的人文景观。</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> 景洪市</span>
+                            <span><i class="fas fa-clock"></i> 建议2小时</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="基诺山寨" class="card-img">
+                    <div class="card-content">
+                        <h3>基诺山寨</h3>
+                        <p>基诺族聚居地，了解中国最后一个被确认的少数民族的文化和生活方式。</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> 景洪市</span>
+                            <span><i class="fas fa-clock"></i> 建议3小时</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="attraction-card">
+                    <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.D_04NLf3I_1Zh6PybZDw1wHaE8?w=263&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt="望天树" class="card-img">
+                    <div class="card-content">
+                        <h3>望天树景区</h3>
+                        <p>体验"空中走廊"的惊险刺激，在高空观赏热带雨林全景，感受大自然的神奇。</p>
+                        <div class="card-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> 勐腊县</span>
+                            <span><i class="fas fa-clock"></i> 建议3小时</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 民族文化 -->
+    <section class="culture-section" id="culture">
+        <div class="container">
+            <div class="section-title">
+                <h2 style="color: white;">傣族文化</h2>
+            </div>
+            <div class="culture-container">
+                <div class="culture-text">
+                    <h3>多彩的民族风情</h3>
+                    <p>西双版纳是傣族的主要聚居地，这里的傣族文化源远流长，独具特色。从精美的傣族服饰到独特的干栏式建筑，从欢快的象脚鼓舞到隆重的泼水节，无不展现着傣族人民的智慧与热情。</p>
+                    <p>傣族人民信仰南传上座部佛教，村村有佛寺，寺寺有佛塔。这些金碧辉煌的佛寺佛塔与郁郁葱葱的热带植物相互映衬，形成了西双版纳特有的风光。</p>
+                    <p>傣族有着自己独特的语言文字、历法、医药和文学艺术。著名的"贝叶经"是傣族文化的瑰宝，记录了傣族的历史、文化和智慧。</p>
+                 
+                </div>
+                <div class="culture-image">
+                    <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.DwmcyF4aBrIagXhMwkdgIwHaFj?w=243&h=182&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt="傣族文化">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 特色美食 -->
+    <section id="food">
+        <div class="container">
+            <div class="section-title">
+                <h2>特色美食</h2>
+            </div>
+            <div class="section-subtitle">
+                <p>西双版纳的美食融合了傣族、哈尼族、基诺族等多个少数民族的饮食文化，以酸、辣、烤、炸、生、鲜为主要特点。</p>
+            </div>
+            <div class="food-grid">
+                <div class="food-card">
+                    <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="菠萝饭" class="food-img">
+                    <div class="food-content">
+                        <h3>菠萝饭</h3>
+                        <p>将糯米与菠萝肉混合，放入菠萝壳中蒸制而成，酸甜可口，带有浓郁的菠萝香气。</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img src="https://tse3-mm.cn.bing.net/th/id/OIP-C.jSywFWx0H3Lg3AkoXOm2lQHaDF?w=283&h=145&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt="烤鱼" class="food-img">
+                    <div class="food-content">
+                        <h3>香茅草烤鱼</h3>
+                        <p>用当地特有的香茅草包裹鲜鱼烤制，鱼肉鲜嫩，带有香茅的独特清香。</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img src="https://tse2-mm.cn.bing.net/th/id/OIP-C._0Jfw7acza98rawiyhRwcwHaFj?w=229&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt="手抓饭" class="food-img">
+                    <div class="food-content">
+                        <h3>傣味手抓饭</h3>
+                        <p>将米饭与多种菜肴摆放在芭蕉叶上，用手抓食，是傣族待客的最高礼节。</p>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.HXnK3dkV1DBJj5ZLGNbdHgHaE8?w=247&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt="酸笋" class="food-img">
+                    <div class="food-content">
+                        <h3>酸笋煮鸡</h3>
+                        <p>用发酵的酸笋与鸡肉一同烹煮，酸辣开胃，是傣族最具代表性的菜肴之一。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 民族节日 -->
+    <section class="festival-section" id="festival">
+        <div class="container">
+            <div class="festival-content">
+                <h2>泼水节 - 傣族新年</h2>
+                <p>泼水节是傣族最盛大的传统节日，一般在每年4月13日至15日举行。节日期间，人们互相泼水，寓意洗去过去一年的不顺，带来新年的好运和祝福。</p>
+                <p>除了泼水活动，还有赛龙舟、放高升、赶摆、跳象脚鼓舞等丰富多彩的庆祝活动。这是体验傣族文化的最佳时机。</p>
+
+            </div>
+        </div>
+    </section>
+    
+    <!-- 旅游路线 -->
+    <section id="itinerary">
+        <div class="container">
+            <div class="section-title">
+                <h2>旅游路线推荐</h2>
+            </div>
+            <div class="section-subtitle">
+                <p>根据您的旅行时间和兴趣，我们为您精心设计了多条旅游路线，带您深度体验西双版纳的魅力。</p>
+            </div>
+            
+            <div class="itinerary-tabs">
+                <button class="tab-btn active" data-tab="tab1">三日经典游</button>
+                <button class="tab-btn" data-tab="tab2">五日深度游</button>
+                <button class="tab-btn" data-tab="tab3">七日全景游</button>
+            </div>
+            
+            <div class="tab-content active" id="tab1">
+                <div class="itinerary-day">
+                    <h4><i class="fas fa-sun"></i> 第一天：景洪市区游览</h4>
+                    <p>上午：抵达景洪，参观曼听公园和总佛寺</p>
+                    <p>下午：游览告庄西双景，体验傣族风情</p>
+                    <p>晚上：欣赏澜沧江夜景，品尝当地美食</p>
+                </div>
+                <div class="itinerary-day">
+                    <h4><i class="fas fa-sun"></i> 第二天：热带雨林探险</h4>
+                    <p>上午：前往野象谷，观察亚洲野象</p>
+                    <p>下午：参观基诺山寨，了解基诺族文化</p>
+                    <p>晚上：观看傣秀表演</p>
+                </div>
+                <div class="itinerary-day">
+                    <h4><i class="fas fa-sun"></i> 第三天：民族文化体验</h4>
+                    <p>上午：游览傣族园，参与泼水活动</p>
+                    <p>下午：体验制茶工艺，品尝普洱茶</p>
+                    <p>晚上：返程</p>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="tab2">
+                <div class="itinerary-day">
+                    <h4><i class="fas fa-sun"></i> 第一天：景洪市区游览</h4>
+                    <p>上午：抵达景洪，参观曼听公园和总佛寺</p>
+                    <p>下午：游览告庄西双景，体验傣族风情</p>
+                    <p>晚上：欣赏澜沧江夜景</p>
+                </div>
+                <div class="itinerary-day">
+                    <h4><i class="fas fa-sun"></i> 第二天：热带植物探索</h4>
+                    <p>全天：参观中科院热带植物园，了解热带植物多样性</p>
+                    <p>晚上：品尝特色傣味烧烤</p>
+                </div>
+                <div class="itinerary-day">
+                    <h4><i class="fas fa-sun"></i> 第三天：雨林探险</h4>
+                    <p>上午：前往野象谷，观察亚洲野象</p>
+                    <p>下午：参观基诺山寨，了解基诺族文化</p>
+                </div>
+                <div class="itinerary-day">
+                    <h4><i class="fas fa-sun"></i> 第四天：民族文化体验</h4>
+                    <p>上午：游览傣族园，参与泼水活动</p>
+                    <p>下午：体验制茶工艺，品尝普洱茶</p>
+                </div>
+                <div class="itinerary-day">
+                    <h4><i class="fas fa-sun"></i> 第五天：边境风情</h4>
+                    <p>上午：前往打洛口岸，参观中缅边境</p>
+                    <p>下午：游览独树成林景区</p>
+                    <p>晚上：返程</p>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="tab3">
+                <div class="itinerary-day">
+                    <h4><i class="fas fa-sun"></i> 第一天：抵达景洪</h4>
+                    <p>上午：抵达景洪，入住酒店</p>
+                    <p>下午：游览告庄西双景，体验傣族风情</p>
+                    <p>晚上：欣赏澜沧江夜景</p>
+                </div>
+                <div class="itinerary-day">
+                    <h4><i class="fas fa-sun"></i> 第二天：市区文化游</h4>
+                    <p>上午：参观曼听公园和总佛寺</p>
+                    <p>下午：游览西双版纳民族博物馆</p>
+                    <p>晚上：观看傣秀表演</p>
+                </div>
+                <div class="itinerary-day">
+                    <h4><i class="fas fa-sun"></i> 第三天：热带植物探索</h4>
+                    <p>全天：参观中科院热带植物园，了解热带植物多样性</p>
+                </div>
+                <div class="itinerary-day">
+                    <h4><i class="fas fa-sun"></i> 第四天：雨林探险</h4>
+                    <p>上午：前往野象谷，观察亚洲野象</p>
+                    <p>下午：参观基诺山寨，了解基诺族文化</p>
+                </div>
+                <div class="itinerary-day">
+                    <h4><i class="fas fa-sun"></i> 第五天：民族文化体验</h4>
+                    <p>上午：游览傣族园，参与泼水活动</p>
+                    <p>下午：体验制茶工艺，品尝普洱茶</p>
+                </div>
+                <div class="itinerary-day">
+                    <h4><i class="fas fa-sun"></i> 第六天：边境风情</h4>
+                    <p>上午：前往打洛口岸，参观中缅边境</p>
+                    <p>下午：游览独树成林景区</p>
+                </div>
+                <div class="itinerary-day">
+                    <h4><i class="fas fa-sun"></i> 第七天：休闲购物</h4>
+                    <p>上午：自由活动，购买特产</p>
+                    <p>下午：返程</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 住宿推荐 -->
+    <section id="accommodation">
+        <div class="container">
+            <div class="section-title">
+                <h2>住宿推荐</h2>
+            </div>
+            <div class="section-subtitle">
+                <p>从豪华度假村到特色民宿，西双版纳提供多种住宿选择，满足不同旅客的需求。</p>
+            </div>
+            <div class="accommodation-grid">
+                <div class="accommodation-card">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="安纳塔拉度假酒店" class="accommodation-img">
+                    <div class="accommodation-content">
+                        <h3>安纳塔拉度假酒店</h3>
+                        <div class="location"><i class="fas fa-map-marker-alt"></i> 景洪市澜沧江畔</div>
+                        <p>豪华度假酒店，融合傣族建筑风格与现代设施，提供一流的服务和体验。</p>
+                        <div class="price">¥1200起/晚</div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="accommodation-card">
+                    <img src="https://tse1-mm.cn.bing.net/th/id/OIP-C.O1DbkYA5QGABYmNxR_b0YwHaE8?w=261&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt="菩提帕莎别院" class="accommodation-img">
+                    <div class="accommodation-content">
+                        <h3>菩提帕莎别院</h3>
+                        <div class="location"><i class="fas fa-map-marker-alt"></i> 景洪市曼弄枫片区</div>
+                        <p>精品度假酒店，设计灵感来自傣族传统建筑，环境幽静，服务贴心。</p>
+                        <div class="price">¥800起/晚</div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="accommodation-card">                   
+                     <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.nEDogwCFI2aWJWtgCP_8XQHaE8?w=255&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3" alt="可见泽栖帐篷酒店" class="accommodation-img">
+                    <div class="accommodation-content">
+                        <h3>可见泽栖帐篷酒店</h3>
+                        <div class="location"><i class="fas fa-map-marker-alt"></i> 勐腊县勐仑镇</div>
+                        <p>特色帐篷酒店，位于热带植物园旁，提供独特的自然体验。</p>
+                        <div class="price">¥600起/晚</div>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>关于我们</h3>
+                    <p>我们致力于为您提供最优质的西双版纳旅游体验，带您深入探索这片神奇的土地。</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-qq"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="#home">首页</a></li>
+                        <li><a href="#attractions">景点推荐</a></li>
+                        <li><a href="#culture">民族文化</a></li>
+                        <li><a href="#food">特色美食</a></li>
+                        <li><a href="#festival">民族节日</a></li>
+                        <li><a href="#itinerary">旅游路线</a></li>
+                        <li><a href="#accommodation">住宿推荐</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>我叫彭叶</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> 123-456-7890</li>
+                        <li><i class="fas fa-envelope"></i> 彭叶.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 云南省西双版纳傣族自治州景洪市</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>旅游服务</h3>
+                    <ul>
+                        <li><a href="#">旅游攻略</a></li>
+                        <li><a href="#">交通指南</a></li>
+                        <li><a href="#">天气预报</a></li>
+                        <li><a href="#">敬请期待</a></li>
+                        <li><a href="#">敬请期待</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 西双版纳之旅 版权所有 | 滇西科技师范学院——彭叶</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 移动端菜单切换
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // 显示页面切换动画
+                const pageTransition = document.querySelector('.page-transition');
+                pageTransition.classList.add('active');
+                
+                setTimeout(() => {
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 隐藏页面切换动画
+                    setTimeout(() => {
+                        pageTransition.classList.remove('active');
+                    }, 300);
+                }, 300);
+                
+                // 移动端点击后关闭菜单
+                if (window.innerWidth <= 768) {
+                    document.querySelector('.nav-links').classList.remove('active');
+                }
+            });
+        });
+        
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.padding = '0.5rem 0';
+                header.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.padding = '1rem 0';
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+            
+            // 回到顶部按钮显示/隐藏
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        // 回到顶部功能
+        document.querySelector('.back-to-top').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // 卡片动画效果
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = `fadeInUp 0.5s ease-out forwards`;
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // 观察所有卡片
+        document.querySelectorAll('.attraction-card, .food-card, .accommodation-card').forEach(card => {
+            card.style.opacity = '0';
+            observer.observe(card);
+        });
+        
+        // 旅游路线标签切换
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // 移除所有活动状态
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                
+                // 添加当前活动状态
+                btn.classList.add('active');
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
