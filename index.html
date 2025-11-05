@@ -18,7 +18,7 @@
                     <li><a href="#" class="nav-link active">首页</a></li>
                     <li><a href="昆明/主页.html" class="nav-link">昆明</a></li>
                     <li><a href="#" class="nav-link">大理</a></li>
-                    <li><a href="#" class="nav-link">临沧</a></li>
+                    <li><a href="临沧/临沧旅游指南.html" class="nav-link">临沧</a></li>
                     <li><a href="西双版纳/网站.htlm.html" class="nav-link">西双版纳</a></li>
                 </ul>
                 <div class="hamburger">
@@ -106,27 +106,6 @@
 
         <!-- 视频区域 -->
         <section class="video-section">
-<<<<<<< HEAD
-    <div class="videos-container">
-        <!-- 原有公开视频（保持不变） -->
-        <div class="video-item">
-            <video controls>
-                <source src="https://v3-cold-src2.douyinvod.com/ca63a2a1bec586b2258978ece544761a/6909fe3d/video/tos/cn/tos-cn-ve-15/oUH0eyWSttzhA0JJAAE1GJoNzr0gzfIzTdNBrs/?a=1128&ch=0&cr=0&dr=0&cd=0%7C0%7C0%7C0&cv=1&br=2434&bt=2434&cs=0&ds=3&ft=3G9Lr_JLRR0sJrC3SDl2Nc0iPMgzbLy.6J-U_4ZtIdJJNv7TGW&mime_type=video_mp4&qs=0&rc=ODg8ZDQ6NDc4PDk3OTVmaEBpajlnZjw6ZnNzbzMzNGkzM0BgYDJjYTBjXy4xMi5jMy4tYSNpbnE2cjRnNWpgLS1kLWFzcw%3D%3D&btag=c0010e000b8001&cquery=100y&dy_q=1762258266&feature_id=59cb2766d89ae6284516c6a254e9fb61&l=20251104201105258943C9B0E08311BDF6" type="video/mp4">
-                您的浏览器不支持视频播放
-            </video>
-            <p class="video-desc">云南自然风光延时摄影</p>
-        </div>
-
-        <!-- 修改后的私有视频（添加加载逻辑） -->
-        <div class="video-item">
-            <!-- 视频容器添加加载状态样式 -->
-            <div class="video-wrapper">
-                <video controls class="private-video" data-video-id="video2">
-                    您的浏览器不支持视频播放
-                </video>
-                <!-- 加载提示（默认隐藏） -->
-                <div class="loading-indicator">加载中...</div>
-=======
             <div class="videos-container">
                 <div class="video-item">
                     <video controls>
@@ -137,94 +116,13 @@
                 </div>
                 <div class="video-item">
                     <video controls>
-                        <source src="https://wnagyang.oss-cn-beijing.aliyuncs.com/%E8%A7%86%E9%A2%912.mp4?Expires=1762335559&OSSAccessKeyId=TMP.3Kp9cPvfvtCEPB78JEmrXgUjrRh6eiZXt1mccmpqyJ3oUNPmDuoEtF3t1HnUDhvXMqnm25bLwSv6K6qvRQks4BJow6g9so&Signature=XLpFlYpfDHsMenhOwCldnjJZBVQ%3D" controls>
-  你的浏览器不支持视频播放
-</video>">
+                        <source src="https://www.bilibili.com/video/BV1aQ1xBkEZx?t=3.5">
                         您的浏览器不支持视频播放
                     </video>
                     <p class="video-desc">云南少数民族文化纪实</p>
                 </div>
->>>>>>> 9d68064632a73d3ec5c39b75328b86db5ced735c
             </div>
-            <div class="video-actions">
-                <button class="load-private-btn" data-target="video2">加载私有视频</button>
-            </div>
-            <p class="video-desc">云南少数民族文化纪实</p>
-        </div>
-    </div>
-</section>
-
-<style>
-/* 新增样式 */
-.video-wrapper {
-    position: relative;
-    background: #000;
-}
-.loading-indicator {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    display: none; /* 默认隐藏 */
-}
-.loading-indicator.active {
-    display: block;
-}
-.private-video {
-    width: 100%;
-    height: auto;
-}
-.load-private-btn {
-    margin: 8px 0;
-    padding: 6px 12px;
-    background: #4096ff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-</style>
-
-<script>
-// 私有视频加载逻辑
-document.querySelectorAll('.load-private-btn').forEach(btn => {
-    btn.addEventListener('click', async function() {
-        const videoId = this.getAttribute('data-target');
-        const videoElement = document.querySelector(`.private-video[data-video-id="${videoId}"]`);
-        const loadingIndicator = videoElement.nextElementSibling;
-
-        // 显示加载状态
-        loadingIndicator.classList.add('active');
-        this.disabled = true;
-        this.textContent = '加载中...';
-
-        try {
-            // 调用后端接口获取签名URL
-            const response = await fetch('http://localhost:5000/get-signed-video-url');
-            const data = await response.json();
-
-            if (data.success) {
-                // 创建source标签并加载视频
-                const source = document.createElement('source');
-                source.src = data.signed_url;
-                source.type = 'video/mp4';
-                videoElement.appendChild(source);
-                videoElement.load(); // 触发加载
-            } else {
-                alert('视频加载失败：' + data.error);
-            }
-        } catch (error) {
-            alert('接口请求失败：' + error.message);
-        } finally {
-            // 隐藏加载状态
-            loadingIndicator.classList.remove('active');
-            this.disabled = false;
-            this.textContent = '重新加载';
-        }
-    });
-});
-</script>
+        </section>
 
         <!-- 景点赏析板块 -->
         <div class="section-title">
@@ -403,16 +301,7 @@ document.querySelectorAll('.load-private-btn').forEach(btn => {
 
             // 初始化1
             initCarousel();
-
         });
-        // 前端通过JavaScript调用Python后端接口
-        fetch("http://localhost:5000/api/get-data")  // 后端接口地址
-            .then(response => response.json())  // 解析JSON数据
-            .then(data => {
-                // 将后端返回的数据显示在页面上
-                document.getElementById("result").innerText = 
-                    `后端返回：${data.message}，值：${data.value}`;
-            });
     </script>
     <style>
                 /* ==============================================
